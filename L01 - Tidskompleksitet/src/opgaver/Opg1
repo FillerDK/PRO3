@@ -1,0 +1,18 @@
+Opgave 1
+Hvad er størrelsesordnen af tidskompleksiteten (Store O)
+af nedenstående metode?
+- O(n^2)
+
+public void algorithm(int[] array) {
+    for (int pass = 1; pass <= array.length; pass++) {
+        for (int index = 0; index < array.length; index++) {
+            for (int count = 0; count < 10; count++) {
+                ...
+            }
+        }
+    }
+}
+
+Hvad er størrelsesordenen af ovenstående metode, hvis tallet
+10 erstattes af array.length i den inderste løkke?
+- O(n^3)
