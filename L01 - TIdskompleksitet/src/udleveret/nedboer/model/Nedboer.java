@@ -1,4 +1,4 @@
-package model;
+package udleveret.nedboer.model;
 
 public class Nedboer {
     private int[] nedboerPrUge = { 20, 10, 12, 12, 13, 14, 15, 10, 8, 7, 13,

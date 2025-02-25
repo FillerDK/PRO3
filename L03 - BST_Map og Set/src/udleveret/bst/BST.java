@@ -428,10 +428,16 @@ public class BST<E extends Comparable<E>> {
     // greaterThanCount helper
     private int greaterThanCount(E element, TreeNode root) {
         if (root.element != null) { // If root element isn't null
-            if (root.element > element) { // If bigger than element
-                int left = greaterThanCount(element, root.left); // Repeat for left
-                int right = greaterThanCount(element, root.right); // Repeat for right¨
+            if (root.element.compareTo(element) > 0) { // If bigger than element
+                int left = 0;
+                if (root.left != null) left = greaterThanCount(element, root.left); // Repeat for left
+                int right = 0;
+                if (root.right != null) right = greaterThanCount(element, root.right); // Repeat for right
                 return left + right + 1;
+            } else if (root.element.compareTo(element) < 0) {
+                int right = 0;
+                if (root.right != null) right = greaterThanCount(element, root.right); // Repeat for right
+                return right;
             }
         }
         return 0;
@@ -449,10 +455,12 @@ public class BST<E extends Comparable<E>> {
     // greatherThan helper
     private void greaterThan(E element, TreeNode root, List<E> gT) {
         if (root.element != null) { // If root element isn't null
-            if (root.element > element) { // If bigger than element
+            if (root.element.compareTo(element) > 0) { // If bigger than element
                 gT.add(root.element); // Add root element
-                greaterThan(element, root.left, gT); // Repeat for left
-                greaterThan(element, root.right, gT); // Repeat for right
+                if (root.left != null) greaterThan(element, root.left, gT); // Repeat for left
+                if (root.right != null) greaterThan(element, root.right, gT); // Repeat for right
+            } else if (root.element.compareTo(element) < 0) {
+                if (root.right != null) greaterThan(element, root.right, gT); // Repeat for right
             }
         }
     }
