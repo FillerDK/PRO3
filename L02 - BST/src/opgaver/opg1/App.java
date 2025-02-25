@@ -36,11 +36,11 @@ public class App {
          */
 
         //----------------- Opg 1.3 -----------------
-        System.out.print("Preorder: ");
+        System.out.println("Preorder: ");
         bst.preorder();
-        System.out.print("Inorder: ");
+        System.out.println("Inorder: ");
         bst.inorder();
-        System.out.print("Postorder: ");
+        System.out.println("Postorder: ");
         bst.postorder();
     }
 }

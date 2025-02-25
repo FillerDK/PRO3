@@ -367,5 +367,64 @@ public class BST<E extends Comparable<E>> {
 
     //-------------------------------------------------------------------
 
+    /**
+     * Fjerner og returnerer det mindste element i soegetraeet.
+     */
+    public E removeMin() {
+        if (root == null) {
+            return null;
+        }
 
+        TreeNode parent = null;
+        TreeNode current = root;
+
+        while (current.left != null) {
+            parent = current;
+            current = current.left;
+        }
+
+        // Hvis roden er mindst
+        if (parent == null) {
+            root = current.right;
+        } else {
+            parent.left = current.right;
+        }
+
+        size--;
+        return current.element;
+    }
+
+    /**
+     * Fjerner og returnerer det stoerste element i soegetraeet.
+     */
+    public E removeMax() {
+        if (root == null) {
+            return null;
+        }
+
+        TreeNode parent = null;
+        TreeNode current = root;
+
+        while (current.right != null) {
+            parent = current;
+            current = current.right;
+        }
+
+        // Hvis roden er mindst
+        if (parent == null) {
+            root = current.left;
+        } else {
+            parent.right = current.left;
+        }
+
+        size--;
+        return current.element;
+    }
+
+    /**
+     * Returnerer alle elementer i traeet der er stoerre end {@code element}.
+     */
+    public List<E> greaterThanCount(E element) {
+        List<>
+    }
 }
