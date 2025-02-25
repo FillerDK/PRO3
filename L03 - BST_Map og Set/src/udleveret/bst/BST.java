@@ -154,7 +154,6 @@ public class BST<E extends Comparable<E>> {
         }
     }
 
-
     private class TreeNode {
         private E element;
         private TreeNode left;
@@ -164,7 +163,6 @@ public class BST<E extends Comparable<E>> {
             element = e;
         }
     }
-
 
     /**
      * Get the number of nodes in the tree
@@ -179,7 +177,6 @@ public class BST<E extends Comparable<E>> {
     private TreeNode getRoot() {
         return root;
     }
-
 
     /**
      * Delete an element from the binary tree.
@@ -422,9 +419,41 @@ public class BST<E extends Comparable<E>> {
     }
 
     /**
+     * Returnerer antallet af de elementer i traet der er stoerre end {@code element}.
+     */
+    public int greaterThanCount(E element) {
+        return greaterThanCount(element, root);
+    }
+
+    // greaterThanCount helper
+    private int greaterThanCount(E element, TreeNode root) {
+        if (root.element != null) { // If root element isn't null
+            if (root.element > element) { // If bigger than element
+                int left = greaterThanCount(element, root.left); // Repeat for left
+                int right = greaterThanCount(element, root.right); // Repeat for right¨
+                return left + right + 1;
+            }
+        }
+        return 0;
+    }
+
+    /**
      * Returnerer alle elementer i traeet der er stoerre end {@code element}.
      */
-    public List<E> greaterThanCount(E element) {
-        List<>
+    public List<E> greaterThan(E element) {
+        List<E> greaterThan = new ArrayList<>(); // Create new list
+        greaterThan(element, root, greaterThan); // Call greaterThan method
+        return greaterThan; // Return list of objects greater than element
+    }
+
+    // greatherThan helper
+    private void greaterThan(E element, TreeNode root, List<E> gT) {
+        if (root.element != null) { // If root element isn't null
+            if (root.element > element) { // If bigger than element
+                gT.add(root.element); // Add root element
+                greaterThan(element, root.left, gT); // Repeat for left
+                greaterThan(element, root.right, gT); // Repeat for right
+            }
+        }
     }
 }
