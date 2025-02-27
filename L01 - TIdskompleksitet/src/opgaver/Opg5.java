@@ -1,6 +1,6 @@
 package opgaver;
 
-import model.Nedboer;
+import udleveret.nedboer.model.Nedboer;
 
 public class Opg5 {
     /*
@@ -21,7 +21,7 @@ public class Opg5 {
      */
 
     public static void main(String[] args) {
-        model.Nedboer nedboer = new Nedboer();
+        Nedboer nedboer = new Nedboer();
 
         // Tidskompleksitet O(n)
         System.out.println("Bedste tre ferieuger start: " + nedboer.bedsteTreFerieUger());
