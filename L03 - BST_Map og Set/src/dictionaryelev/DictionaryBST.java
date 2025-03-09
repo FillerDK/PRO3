@@ -43,9 +43,16 @@ public class DictionaryBST<K extends Comparable<K>, V> implements Dictionary<K, 
 
 	@Override
 	public V put(K key, V value) {
-		// TODO
-		return null;
+		if (root == null) {
+			root = new Node(key, value);
+		}
 
+
+		return null;
+	}
+
+	private V put(K key, V value) {
+		return null;
 	}
 
 	@Override
