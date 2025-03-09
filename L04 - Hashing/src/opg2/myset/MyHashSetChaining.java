@@ -57,7 +57,7 @@ public class MyHashSetChaining<E> implements MySet<E> {
             }
         }
         if (!found) {
-            double loadFaktor = (size + 1) / table.length;
+            double loadFaktor = (double) (size + 1) / table.length;
             if (loadFaktor > 0.75) {
                 reHash();
             }

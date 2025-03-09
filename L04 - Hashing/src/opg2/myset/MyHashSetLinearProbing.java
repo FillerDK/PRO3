@@ -36,7 +36,8 @@ public class MyHashSetLinearProbing<E> implements MySet<E> {
     @Override
     /** Remove all elements from this set */
     public void clear() {
-        // TODO
+        table = (E[]) new Object[table.length];
+        size = 0;
     }
 
     /**
@@ -45,8 +46,23 @@ public class MyHashSetLinearProbing<E> implements MySet<E> {
      * @return true if e is a new object, false if e was already in the set
      */
     public boolean add(E e) {
-        // TODO
-        return false;
+        int bucketIndex = hash(e.hashCode());
+        E current = table[bucketIndex % table.length];
+        boolean found = false;
+        boolean ny = true;
+        while (!found) {
+            if (current == null) {
+                table[bucketIndex % table.length] = e;
+                found = true;
+                // Already in the set
+            } else {
+                bucketIndex++;
+                current = table[bucketIndex % table.length];
+                ny = false;
+            }
+        }
+        size++;
+        return ny;
     }
 
     /**
@@ -63,8 +79,7 @@ public class MyHashSetLinearProbing<E> implements MySet<E> {
     @Override
     /** Return the number of elements in the set */
     public int size() {
-        // TODO
-        return -1;
+        return size;
     }
 
     @Override
@@ -80,6 +95,5 @@ public class MyHashSetLinearProbing<E> implements MySet<E> {
             System.out.println(i + "\t" + table[i]);
         }
     }
-
 
 }
