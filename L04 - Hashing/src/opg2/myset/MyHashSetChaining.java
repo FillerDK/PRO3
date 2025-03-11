@@ -57,15 +57,15 @@ public class MyHashSetChaining<E> implements MySet<E> {
             }
         }
         if (!found) {
-            double loadFaktor = (double) (size + 1) / table.length;
-            if (loadFaktor > 0.75) {
-                reHash();
-            }
             Node newNode = new Node();
             newNode.data = e;
             newNode.next = table[bucketIndex];
             table[bucketIndex] = newNode;
             size++;
+            double loadFaktor = (double) (size + 1) / table.length;
+            if (loadFaktor > 0.75) {
+                reHash();
+            }
         }
         return !found;
     }
@@ -74,6 +74,7 @@ public class MyHashSetChaining<E> implements MySet<E> {
         Node<E>[] temp = table;
 
         table = (Node<E>[]) new Node[temp.length*2 + 1];
+        size = 0;
 
         for (Node<E> node : temp) {
             Node<E> current = node;

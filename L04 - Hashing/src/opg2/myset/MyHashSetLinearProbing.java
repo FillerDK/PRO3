@@ -29,8 +29,19 @@ public class MyHashSetLinearProbing<E> implements MySet<E> {
     @Override
     /** Return true if the element is in the set */
     public boolean contains(E e) {
-        // TODO
-        return false;
+        int bucketIndex = hash(e.hashCode());
+        E current = table[bucketIndex % table.length];
+        boolean found = false;
+        while (!found && current != null) {
+            if (e.equals(current)) {
+                found = true;
+                // Is in the set
+            } else {
+                bucketIndex++;
+                current = table[bucketIndex % table.length];
+            }
+        }
+        return found;
     }
 
     @Override
@@ -49,20 +60,35 @@ public class MyHashSetLinearProbing<E> implements MySet<E> {
         int bucketIndex = hash(e.hashCode());
         E current = table[bucketIndex % table.length];
         boolean found = false;
-        boolean ny = true;
-        while (!found) {
-            if (current == null) {
-                table[bucketIndex % table.length] = e;
+        while (!found && current != null) {
+            if (current.equals(e)) {
                 found = true;
                 // Already in the set
             } else {
                 bucketIndex++;
                 current = table[bucketIndex % table.length];
-                ny = false;
             }
         }
-        size++;
-        return ny;
+        if (!found) {
+            table[bucketIndex % table.length] = e;
+            size++;
+            double loadFactor = (double) (size) / table.length;
+            if (loadFactor > 0.75) {
+                reHash();
+            }
+        }
+        return !found;
+    }
+
+    public void reHash() {
+        E[] temp = table;
+
+        table = (E[]) new Object[table.length*2 + 1];
+        size = 0;
+
+        for (E e : temp) {
+            if (e != null && !e.equals(DELETED)) add(e);
+        }
     }
 
     /**
@@ -72,8 +98,23 @@ public class MyHashSetLinearProbing<E> implements MySet<E> {
      * element of this set
      */
     public boolean remove(E e) {
-        // TODO
-        return false;
+        int bucketIndex = hash(e.hashCode());
+        E current = table[bucketIndex % table.length];
+        boolean found = false;
+        while (!found && current != null) {
+            if (e.equals(current)) {
+                found = true;
+                // Is in the set
+            } else {
+                bucketIndex++;
+                current = table[bucketIndex % table.length];
+            }
+        }
+        if (found) {
+            table[bucketIndex % table.length] = DELETED;
+            size--;
+        }
+        return found;
     }
 
     @Override
@@ -92,7 +133,10 @@ public class MyHashSetLinearProbing<E> implements MySet<E> {
     // method only for test purpose
     public void writeOut() {
         for (int i = 0; i < table.length; i++) {
-            System.out.println(i + "\t" + table[i]);
+            E temp = table[i];
+            if (temp != null) {
+                System.out.println(i + "\t" + table[i]);
+            }
         }
     }
 
