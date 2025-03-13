@@ -88,9 +88,9 @@ public class MyHashSetChaining<E> implements MySet<E> {
     @Override /** Remove the element from the set */
     public boolean remove(E e) {
         int bucketIndex = hash(e.hashCode());
-        Node<E> previous = null;
         Node<E> current = table[bucketIndex];
         boolean found = false;
+        Node<E> previous = null;
         while (!found && current != null) {
             if (current.data.equals(e)) {
                 found = true;

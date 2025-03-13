@@ -60,7 +60,7 @@ public class MyHashSetLinearProbing<E> implements MySet<E> {
         int bucketIndex = hash(e.hashCode());
         E current = table[bucketIndex % table.length];
         boolean found = false;
-        while (!found && current != null) {
+        while (!found && current != null || current == DELETED) {
             if (current.equals(e)) {
                 found = true;
                 // Already in the set
