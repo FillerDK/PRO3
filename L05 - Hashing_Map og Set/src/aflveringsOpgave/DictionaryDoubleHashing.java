@@ -15,10 +15,7 @@ public class DictionaryDoubleHashing <K, V> implements Dictionary<K, V> {
 
     // Størrelsesordenen O(1)
     public int hash(int hashCode) {
-        if (hashCode < 0) {
-            hashCode = -hashCode;
-        }
-        return hashCode % table.length;
+        return (hashCode & 0x7FFFFFFF) % table.length;
     }
 
 
@@ -56,18 +53,20 @@ public class DictionaryDoubleHashing <K, V> implements Dictionary<K, V> {
         return null;
     }
 
+    // Størrelsesordenen O(1)
     @Override
     public boolean isEmpty() {
         return size == 0;
     }
 
+    // Størelsesordenen O(n)
     @Override
     public V put(K key, V value) {
         int bucketIndex = hash(key.hashCode());
         Entry<K, V> e = table[bucketIndex];
         boolean found = false;
 
-        if (e == null) {
+        if (e == null || e.equals(DELETED)) {
             // New entry
         } else if (!key.equals(e.getKey())) {
             // Double hashing
@@ -101,6 +100,7 @@ public class DictionaryDoubleHashing <K, V> implements Dictionary<K, V> {
         }
     }
 
+    // Størelsesordenen O(n)
     private void reHash() {
         Entry[] temp = table;
 
@@ -114,6 +114,7 @@ public class DictionaryDoubleHashing <K, V> implements Dictionary<K, V> {
         }
     }
 
+    // Størrelsesordenen O(n)
     @Override
     public V remove(K key) {
         int bucketIndex = hash(key.hashCode());
@@ -150,6 +151,7 @@ public class DictionaryDoubleHashing <K, V> implements Dictionary<K, V> {
         return null;
     }
 
+    // Størrelsesordenen O(1)
     @Override
     public int size() {
         return size;
@@ -179,6 +181,7 @@ public class DictionaryDoubleHashing <K, V> implements Dictionary<K, V> {
         public V getValue() {
             return value;
         }
+
         public String toString(){
             return "(" + key + " , " + value + ")";
         }
