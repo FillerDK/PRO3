@@ -51,6 +51,7 @@ public class DictionaryList<K, V> implements Dictionary<K, V> {
         return size == 0;
     }
 
+    // O(n), men der er 3 gennemløb, så ikke effektivt.
     @Override
     public V put(K key, V value) {
         List<KeyValuePair> temp = tabel[key.hashCode() % N];
