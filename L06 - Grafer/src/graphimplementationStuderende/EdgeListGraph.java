@@ -142,8 +142,7 @@ public class EdgeListGraph<V> implements Graph<V> {
      * Pre: The vertex is in the graph
      */
     public void removeVertex(V v) {
-        boolean removed = false;
-        for (int i = 0; !removed && i < vertices().size(); i++) {
+        for (int i = 0; i < vertices().size(); i++) {
             V e = vertices().get(i);
             if (e.equals(v)) {
                 List<V> neighbors = neighbors(e);

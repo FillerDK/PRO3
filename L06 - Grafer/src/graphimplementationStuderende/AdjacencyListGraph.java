@@ -131,6 +131,8 @@ public class AdjacencyListGraph<V> implements Graph<V> {
      * Pre: The vertex is not in the graph before this addition.     */
     public void addVertex(V v) {
         vertices.add(v);
+
+        edges.put(v, new ArrayList<>());
     }
 
     @Override
@@ -146,14 +148,6 @@ public class AdjacencyListGraph<V> implements Graph<V> {
     /** Add an edge to the graph */
     public void addEdge(V v, V u, int e) {
         //TODO : lavet og testet
-
-        if (edges.get(v) == null) {
-            edges.put(v, new ArrayList<>());
-        }
-
-        if (edges.get(u) == null) {
-            edges.put(u, new ArrayList<>());
-        }
 
         Edge<V> newEdge = new Edge<>(v, u, e);
         edges.get(v).add(newEdge);
