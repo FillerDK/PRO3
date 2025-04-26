@@ -15,7 +15,10 @@ public class App {
         bst.insert(88);
         bst.insert(25);
 
-        System.out.println(bst.greaterThan(46));
+        System.out.println("Greater than 46: " + bst.greaterThan(46));
+        System.out.println("Height of tree: " + bst.height());
+        System.out.println("Sum of leaves: " + bst.sumOfLeaves());
+        System.out.println("Nodes at level 2: " + bst.countNodesAtHeight(2));
         /*
         while (bst.getSize() > 0) {
             bst.removeMax();

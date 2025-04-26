@@ -362,7 +362,7 @@ public class BST<E extends Comparable<E>> {
         return sum;
     }
 
-    //-------------------------------------------------------------------
+    //------------------------ L03 - Opgave 2 ---------------------------
 
     /**
      * Fjerner og returnerer det mindste element i soegetraeet.
@@ -462,6 +462,47 @@ public class BST<E extends Comparable<E>> {
             } else if (root.element.compareTo(element) < 0) {
                 if (root.right != null) greaterThan(element, root.right, gT); // Repeat for right
             }
+        }
+    }
+
+    //------------------------ L03 - Opgave 4 ---------------------------
+
+    /**
+     * Returnerer summen af bladene i det binære søgetræ.
+     * (Det kan antages at træet indeholder integer objekter)
+     */
+    public int sumOfLeaves() {
+        return sumOfLeaves(root);
+    }
+
+    private int sumOfLeaves(TreeNode root) {
+        if (root.left == null && root.right == null) {
+            return (Integer) root.element;
+        } else {
+            int left = 0;
+            if (root.left != null) left = sumOfLeaves(root.left);
+            int right = 0;
+            if (root.right != null) right = sumOfLeaves(root.right);
+            return left + right;
+        }
+    }
+
+    /**
+     * Returnerer antallet af knuder i træet der har en bestemt højde.
+     */
+    public int countNodesAtHeight(int height) {
+        return countNodesAtHeight(root, height);
+    }
+
+    private int countNodesAtHeight(TreeNode root, int height) {
+        if (root == null) {
+            return 0;
+        }else if (height > height(root) - 1) {
+            throw new RuntimeException("Height is too big");
+        }else if (height == 0) {
+            return 1;
+        } else {
+            return countNodesAtHeight(root.left, height - 1) + countNodesAtHeight(root.right, height - 1);
         }
     }
 }
