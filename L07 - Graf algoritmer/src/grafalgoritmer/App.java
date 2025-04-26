@@ -9,6 +9,7 @@ public class App {
         graph.addVertex(6);
         graph.addVertex(123);
         graph.addVertex(66);
+        graph.addVertex(7);
 
         graph.addEdge(15, 38, 10);
         graph.addEdge(15, 6, 23);
@@ -25,6 +26,10 @@ public class App {
         //System.out.println("DFS: " + GraphAlgortihms.dfs(graph, 123));
         //System.out.println("BFS: " + GraphAlgortihms.bfs(graph, 123));
         //System.out.println("Connected: " + GraphAlgortihms.connected(graph));
-        System.out.println(GraphAlgortihms.mst(graph));
+        System.out.println("Is path: " + GraphAlgortihms.isPath(graph, 123, 123));// Expected: true
+        System.out.println("Is path: " + GraphAlgortihms.isPath(graph, 123, 6));  // Expected: true
+        System.out.println("Is path: " + GraphAlgortihms.isPath(graph, 123, 7));  // Expected: false
+        //System.out.println(GraphAlgortihms.mst(graph));
+        //System.out.println(GraphAlgortihms.dijkstra(graph, 6));
     }
 }

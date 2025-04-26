@@ -3,7 +3,7 @@ package opg2.dictionaryelev;
 public class DictionaryDemo {
 
 	public static void main(String[] args) {
-		Dictionary dictionary = new DictionaryHashMap<Integer,String>();
+		opg2.dictionaryelev.Dictionary dictionary = new opg2.dictionaryelev.DictionaryHashMap<Integer,String>();
 
 		System.out.println(dictionary.isEmpty());
 		System.out.println(dictionary.size());

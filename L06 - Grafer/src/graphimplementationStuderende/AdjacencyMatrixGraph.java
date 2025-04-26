@@ -12,7 +12,7 @@ public class AdjacencyMatrixGraph<V> implements Graph<V> {
 
     private Edge<V>[][] matrix;
     private int vertexNr; // Next vertex index to use
-    private int numEdges;  // Number og edges in the Graph
+    private int numEdges;  // Number of edges in the Graph
 
     private static final int N = 15;
 
@@ -22,7 +22,6 @@ public class AdjacencyMatrixGraph<V> implements Graph<V> {
     public AdjacencyMatrixGraph() {
         matrix = (Edge<V>[][]) new Edge[N][N];
         vertexNr = 0;
-
     }
 
     @Override
@@ -47,8 +46,8 @@ public class AdjacencyMatrixGraph<V> implements Graph<V> {
     /** Return a list with the edges in the graph. */
     public List<Edge<V>> edges() {
         List<Edge<V>> toReturn = new ArrayList<>();
-        for (int i = 0; i < vertexNr; i++) {
-            for (int j = i + 1; j < vertexNr; j++) {
+        for (int i = 1; i < vertexNr; i++) {
+            for (int j = i + 2; j < vertexNr; j++) {
                 if (matrix[i][j] != null) {
                     toReturn.add(matrix[i][j]);
                 }
@@ -56,7 +55,6 @@ public class AdjacencyMatrixGraph<V> implements Graph<V> {
         }
         return toReturn;
     }
-
 
     @Override
     /**
@@ -113,6 +111,22 @@ public class AdjacencyMatrixGraph<V> implements Graph<V> {
      * Pre: The vertex is not in the graph before this addition.     */
     public void addVertex(V v) {
         // TODO
+
+        // Check if matrix needs to be expanded
+        if (vertexNr == matrix.length) {
+            // Expand the matrix
+            Edge<V>[][] newMatrix = (Edge<V>[][]) new Edge[matrix.length * 2][matrix.length * 2];
+            // Copy the old matrix to the new matrix
+            for (int i = 0; i < matrix.length; i++) {
+                for (int j = 0; j < matrix[i].length; j++) {
+                    newMatrix[i][j] = matrix[i][j];
+                }
+            }
+            // Initialize the new part of the matrix
+            matrix = newMatrix;
+        }
+        // Add the new vertex to the matrix
+        vertices.put(v, vertexNr);
     }
 
     @Override

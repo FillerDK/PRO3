@@ -128,7 +128,8 @@ public class AdjacencyListGraph<V> implements Graph<V> {
     @Override
     /**
      * Add a vertex to the graph.
-     * Pre: The vertex is not in the graph before this addition.     */
+     * Pre: The vertex is not in the graph before this addition.
+     */
     public void addVertex(V v) {
         vertices.add(v);
 

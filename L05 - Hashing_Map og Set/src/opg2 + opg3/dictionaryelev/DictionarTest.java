@@ -7,12 +7,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 public class DictionarTest {
-    Dictionary<Integer, String> dictionary;
+    opg2.dictionaryelev.Dictionary<Integer, String> dictionary;
    
 
     @BeforeEach
     public void setUp() throws Exception {
-         dictionary = new DictionaryList<>();
+         dictionary = new opg2.dictionaryelev.DictionaryList<>();
 
         
     }
@@ -40,9 +40,10 @@ public class DictionarTest {
 
         assertEquals(3, dictionary.size());
         
-        assertEquals("hans", dictionary.put(8, "Ida"));
-        assertEquals("Ida", dictionary.get(8));
+        assertEquals("hans", dictionary.put(8, "ida"));
+        assertEquals("ida", dictionary.get(8));
 
+        assertEquals(3, dictionary.size());
     }
 
     

@@ -46,7 +46,7 @@ public class MoviesApp {
         //movieList.stream().forEach(e -> System.out.println(e.getTitle()));
         System.out.println("Number of movies: " + movieList.size());
 
-        //  The numer of movies starting with "H"
+        //  The number of movies starting with "H"
         // TODO Opgave
         long count = movieList.stream()
                 .filter(m -> m.getTitle().toLowerCase().startsWith("h"))
@@ -55,10 +55,9 @@ public class MoviesApp {
 
         // The title of the movies starting with "X"
         // TODO Opgave
-        count = movieList.stream()
+        System.out.println("Number of movies starting with X: " + movieList.stream()
                 .filter(m -> m.getTitle().toLowerCase().startsWith("x"))
-                .count();
-        System.out.println("Number of movies starting with X: " + count);
+                .collect(Collectors.toList()));
 
         // The number of films where the director is also an actor
         // TODO Opgave

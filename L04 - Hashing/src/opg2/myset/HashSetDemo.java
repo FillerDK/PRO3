@@ -5,7 +5,7 @@ package opg2.myset;
  */
 public class HashSetDemo {
 	public static void main(String[] args) {
-		//MyHashSetChaining<String> names = new MyHashSetChaining(13);
+//		MyHashSetChaining<String> names = new MyHashSetChaining(13);
 		MyHashSetLinearProbing names = new MyHashSetLinearProbing(13);
 
 		names.add("Harry");

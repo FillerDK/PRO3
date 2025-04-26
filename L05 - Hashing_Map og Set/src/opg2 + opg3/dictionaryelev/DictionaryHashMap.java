@@ -3,7 +3,7 @@ package opg2.dictionaryelev;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DictionaryHashMap<K, V> implements Dictionary<K, V> {
+public class DictionaryHashMap<K, V> implements opg2.dictionaryelev.Dictionary<K, V> {
 
     private Map<K, V>[] tabel;
     private static int N = 13;

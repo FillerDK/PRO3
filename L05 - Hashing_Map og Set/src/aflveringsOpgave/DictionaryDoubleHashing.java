@@ -9,7 +9,7 @@ public class DictionaryDoubleHashing <K, V> implements Dictionary<K, V> {
    private final Entry DELETED = new Entry(null,null);
 
     public DictionaryDoubleHashing() {
-        table =  new Entry[10];
+        table =  new Entry[13];
         size = 0;
     }
 
@@ -79,14 +79,16 @@ public class DictionaryDoubleHashing <K, V> implements Dictionary<K, V> {
                     found = true; // Key exists
                 } else {
                     bucketIndex += newHash;
-                    e = table[bucketIndex % table.length];
+                    e = table[hash(bucketIndex)];
                 }
             }
+        } else {
+            found = true; // Key exists
         }
 
         if (!found) {
             Entry<K, V> newEntry = new Entry<>(key, value);
-            table[bucketIndex % table.length] = newEntry;
+            table[hash(bucketIndex)] = newEntry;
             size++;
             double loadfaktor = (double) size / table.length;
             if (loadfaktor > 0.5) {
