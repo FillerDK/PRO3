@@ -96,7 +96,7 @@ public class BST<E extends Comparable<E>> {
         return pair.current != null;
     }
 
-
+    //------------------------ L02 - Opgave 1 ---------------------------
 
     /**
      * Inorder traversal from the root
@@ -243,7 +243,7 @@ public class BST<E extends Comparable<E>> {
         return toString(node.left) + " " + node.element + " " + toString(node.right);
     }
 
-    //-------------------------------------------------------------------
+    //------------------------ L02 - Opgave 2 ---------------------------
 
     /**
      * Returnerer en List med indholdet af alle
@@ -345,6 +345,8 @@ public class BST<E extends Comparable<E>> {
             return left + right;
         }
     }
+
+    //------------------------ L02 - Opgave 3 ---------------------------
 
     public int sum() {
         return sum(root);
