@@ -9,7 +9,6 @@ public class AdjacencyMatrixGraph<V> implements Graph<V> {
 
     private Map<V, Integer> vertices = new HashMap<V, Integer>(); // Store vertices with index as value
 
-
     private Edge<V>[][] matrix;
     private int vertexNr; // Next vertex index to use
     private int numEdges;  // Number of edges in the Graph
@@ -46,8 +45,8 @@ public class AdjacencyMatrixGraph<V> implements Graph<V> {
     /** Return a list with the edges in the graph. */
     public List<Edge<V>> edges() {
         List<Edge<V>> toReturn = new ArrayList<>();
-        for (int i = 1; i < vertexNr; i++) {
-            for (int j = i + 2; j < vertexNr; j++) {
+        for (int i = 0; i < vertexNr; i++) {
+            for (int j = i + 1; j < vertexNr; j++) {
                 if (matrix[i][j] != null) {
                     toReturn.add(matrix[i][j]);
                 }
@@ -63,9 +62,25 @@ public class AdjacencyMatrixGraph<V> implements Graph<V> {
      */
     public List<V> neighbors(V v) {
         // TODO
-        return null;
-    }
 
+        // Find the index of the vertex
+        int vind = vertices.get(v);
+        List<V> neighbors = new ArrayList<>();
+
+        // Loop through the matrix to find the neighbors
+        for (int i = 0; i < vertexNr; i++) {
+            if (matrix[vind][i] != null) {
+                // Add the neighbor to the list
+                for (Map.Entry<V, Integer> entry : vertices.entrySet()) {
+                    if (entry.getValue() == i) {
+                        neighbors.add(entry.getKey());
+                    }
+                }
+            }
+        }
+
+        return neighbors;
+    }
 
     @Override
     /**
@@ -74,7 +89,19 @@ public class AdjacencyMatrixGraph<V> implements Graph<V> {
      */
     public List<Edge<V>> incidentEdges(V v) {
         //TODO
-        return null;
+
+        // Find the index of the vertex
+        int vind = vertices.get(v);
+        List<Edge<V>> incidentsEdges = new ArrayList<>();
+
+        // Loop through the matrix to find the incident edges
+        for (int i = 0; i < vertexNr; i++) {
+            if (matrix[vind][i] != null) {
+                incidentsEdges.add(matrix[vind][i]);
+            }
+        }
+
+        return incidentsEdges;
     }
 
     @Override
@@ -84,8 +111,19 @@ public class AdjacencyMatrixGraph<V> implements Graph<V> {
      */
     public int degree(V v) {
         // TODO
-        return -1;
 
+        // Find the index of the vertex
+        int vind = vertices.get(v);
+        int degree = 0;
+
+        // Loop through the matrix to find the degree
+        for (int i = 0; i < vertexNr; i++) {
+            if (matrix[vind][i] != null) {
+                degree++;
+            }
+        }
+
+        return degree;
     }
 
     @Override
@@ -95,6 +133,16 @@ public class AdjacencyMatrixGraph<V> implements Graph<V> {
      */
     public boolean areAdjacent(V v, V u) {
         // TODO
+
+        // Find the indices of the vertices
+        int vind = vertices.get(v);
+        int uind = vertices.get(u);
+
+        // Check if the edge exists in the matrix
+        if (matrix[vind][uind] != null) {
+            return true;
+        }
+
         return false;
     }
 
@@ -102,8 +150,13 @@ public class AdjacencyMatrixGraph<V> implements Graph<V> {
     /** Print the vertices and the edges. */
     public void printGraph() {
         // TODO
-    }
 
+        // Print the vertices
+        System.out.println("Vertices:");
+        for (V vertex : vertices.keySet()) {
+            System.out.print(vertex + " ");
+        }
+    }
 
     @Override
     /**
@@ -125,8 +178,10 @@ public class AdjacencyMatrixGraph<V> implements Graph<V> {
             // Initialize the new part of the matrix
             matrix = newMatrix;
         }
+
         // Add the new vertex to the matrix
         vertices.put(v, vertexNr);
+        vertexNr++;
     }
 
     @Override
@@ -136,6 +191,12 @@ public class AdjacencyMatrixGraph<V> implements Graph<V> {
      */
     public void addEdge(V v, V u) {
         // TODO
+
+        // Add the edge to the matrix
+        int vind = vertices.get(v);
+        int uind = vertices.get(u);
+        matrix[vind][uind] = matrix[uind][vind] = new Edge<>(u, v, 0);
+        numEdges++;
     }
 
     @Override
@@ -146,6 +207,12 @@ public class AdjacencyMatrixGraph<V> implements Graph<V> {
      */
     public void addEdge(V v, V u, int e) {
         //TODO
+
+        // Add the edge to the matrix
+        int vind = vertices.get(v);
+        int uind = vertices.get(u);
+        matrix[vind][uind] = matrix[uind][vind] = new Edge<>(u, v, e);
+        numEdges++;
     }
 
     @Override
@@ -155,6 +222,25 @@ public class AdjacencyMatrixGraph<V> implements Graph<V> {
      */
     public void removeVertex(V v) {
         //TODO
+
+        // Remove the vertex from the matrix
+        int vind = vertices.get(v);
+        vertices.remove(v);
+
+        // Removes the vertex from the matrix
+        for (int i = 0; i < vertexNr; i++) {
+            matrix[vind][i] = null;
+            matrix[i][vind] = null;
+        }
+
+        // Shift the vertices down
+        for (int i = vind; i < vertexNr - 1; i++) {
+            for (int j = 0; j < vertexNr; j++) {
+                matrix[i][j] = matrix[i + 1][j];
+                matrix[j][i] = matrix[j][i + 1];
+            }
+        }
+        vertexNr--;
     }
 
     @Override
@@ -164,12 +250,14 @@ public class AdjacencyMatrixGraph<V> implements Graph<V> {
      *   and The graph has an edge between the vertices.
      */
     public void removeEdge(V v, V u) {
-//       TODO
+        //TODO
 
+        // Remove the edge from the matrix
+        int vind = vertices.get(v);
+        int uind = vertices.get(u);
+        matrix[vind][uind] = matrix[uind][vind] = null;
+        numEdges--;
     }
-
-
-
 
 }
 

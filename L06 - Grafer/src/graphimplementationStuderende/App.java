@@ -5,9 +5,11 @@ import java.util.List;
 public class App {
     public static void main(String[] args) {
         // opg3
-        Graph<Integer> graph = new AdjacencyListGraph<>();
+//        Graph<Integer> graph = new AdjacencyListGraph<>();
         // opg1.a
         //EdgeListGraph<Integer> graph = new EdgeListGraph<>();
+        // opg4
+        AdjacencyMatrixGraph<Integer> graph = new AdjacencyMatrixGraph<>();
 
         graph.addVertex(15);
         graph.addVertex(38);
