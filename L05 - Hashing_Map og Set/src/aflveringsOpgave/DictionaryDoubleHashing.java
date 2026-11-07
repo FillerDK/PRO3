@@ -145,7 +145,7 @@ public class DictionaryDoubleHashing <K, V> implements Dictionary<K, V> {
 
         if (found) {
             V temp = e.getValue();
-            table[bucketIndex] = DELETED;
+            table[bucketIndex % table.length] = DELETED;
             size--;
             return temp;
         }
