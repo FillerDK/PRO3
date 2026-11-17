@@ -6,18 +6,18 @@ Java exercises from the course *Advanceret programmering* at Erhvervsakademi Aar
 
 | Lecture | Topic | What is in the folder |
 |---|---|---|
-| L01 | Time complexity | Exercises on analyzing and minimizing running time, for example a prefix average computed in one pass |
+| L01 | Time complexity | Exercises on analyzing running time |
 | L02 | Binary search trees | Traversals, height, min/max and leaf count, with a time complexity analysis in `opg3.java` |
-| L03 | Dictionary on a binary search tree | A generic dictionary (get, put, remove, size) built as a binary search tree |
+| L03 | Dictionary on a binary search tree | A generic dictionary (get, put, remove, size) on an unbalanced binary search tree |
 | L04 | Hashing | Hash set with chaining and with linear probing |
-| L05 | Hash-based dictionary | A dictionary with double hashing and rehashing, one built from an array of `HashMap` buckets, and a list-based dictionary |
+| L05 | Dictionaries with hashing | Double hashing with a DELETED marker and rehashing, plus a `HashMap`-based and a list-based dictionary |
 | L06 | Graphs | Graph with adjacency lists (adjacency matrix and edge list variants are in the same folder) |
 | L07 | Graph algorithms | Depth-first search (DFS), breadth-first search (BFS), connectivity, path finding, minimum spanning tree (Kruskal), shortest paths (Dijkstra) |
-| L08 | Streams | Java streams on number lists, plus exercises on words and movies |
-| L09 | Design patterns | Exercises including Singleton and Decorator |
+| L08 | Streams | Java streams exercises |
+| L09 | Design patterns | Exercises on design patterns, including Singleton and Decorator |
 
 ## Notes
 
-The linear probing hash set marks deleted slots with a DELETED marker and rehashes when the load factor passes 0.75.
+- The linear probing hash set marks deleted slots with a DELETED marker and rehashes when the load factor passes 0.75.
 
 Each lecture has its own `src` folder.
